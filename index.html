@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/f58497a0c9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="toolbar">
+            <button onclick="format('bold')"><span class="fa fa-bold fa-fw"></span></button>
+		    <button onclick="format('italic')"><span class="fa fa-italic fa-fw"></span></button>
+		    <button onclick="format('insertunorderedlist')"><span class="fa fa-list fa-fw"></span></button>
+        </div>
+        <div class="editor" id="editor" contenteditable="true"></div>
+        <button class="download-btn"><span>Pobierz</span></button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
