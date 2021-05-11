@@ -10,13 +10,14 @@
 </head>
 <body>
     <div class="container">
+        <input class="file-name" type="text" placeholder="File name" id="file-name" autocomplete="off">
         <div class="toolbar">
             <button onclick="format('bold')"><span class="fa fa-bold fa-fw"></span></button>
 		    <button onclick="format('italic')"><span class="fa fa-italic fa-fw"></span></button>
 		    <button onclick="format('insertunorderedlist')"><span class="fa fa-list fa-fw"></span></button>
         </div>
         <div class="editor" id="editor" contenteditable="true"></div>
-        <button class="download-btn"><span>Pobierz</span></button>
+        <button class="download-btn" id="download-btn"><span>Pobierz</span></button>
     </div>
 
     <script src="script.js"></script>

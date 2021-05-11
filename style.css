@@ -34,12 +34,20 @@ button {
 }
 
 
-.toolbar, .editor {
+.toolbar, .editor, .file-name {
     width: 100%;
     border-radius: 10px;
     background: #fff;
     font-size: 16px;
     z-index: 2;
+}
+
+.file-name {
+    border: none;
+    padding: 10px;
+    box-shadow: inset 0px 0px 5px #ddd;
+    margin: 10px;
+    outline: none;
 }
 
 .toolbar {
