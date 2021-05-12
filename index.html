@@ -10,14 +10,34 @@
 </head>
 <body>
     <div class="container">
-        <input class="file-name" type="text" placeholder="File name" id="file-name" autocomplete="off">
+        <input id="upload" type="file" accept=".json">
         <div class="toolbar">
             <button onclick="format('bold')"><span class="fa fa-bold fa-fw"></span></button>
 		    <button onclick="format('italic')"><span class="fa fa-italic fa-fw"></span></button>
 		    <button onclick="format('insertunorderedlist')"><span class="fa fa-list fa-fw"></span></button>
         </div>
         <div class="editor" id="editor" contenteditable="true"></div>
-        <button class="download-btn" id="download-btn"><span>Pobierz</span></button>
+        <div 
+            class="download-btn"
+            id="download-btn">
+            <span>Pobierz</span>
+            <form class="save-popup" name='save-popup' id='save-popup'>
+                <input 
+                    class="file-name" 
+                    type="text" 
+                    placeholder="Nazwa pliku"
+                    id="file-name"
+                    autocomplete="off"
+                    oninvalid="this.setCustomValidity('Wprowadź nazwę pliku :)')"
+                    oninput="this.setCustomValidity('')"
+                    novalidate
+                    required>
+                <div class='btn-container'>
+                    <button type='button' class="cancel-btn" id="cancel-btn">Anuluj</button>
+                    <button type='submit'class="save-btn">Zapisz</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="script.js"></script>
