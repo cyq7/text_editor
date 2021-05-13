@@ -45,6 +45,9 @@ savePopUp.addEventListener('submit', e => {
 //____________UPLOAD____________
 
 function readJSON(file) {
+	if (file.type && !file.type.startsWith('application/json')) {
+    alert('Nieodpowiedni format pliku');
+  }
   const reader = new FileReader();
   reader.readAsText(file, "UTF-8");
   reader.addEventListener('load', e => {
@@ -69,5 +72,28 @@ cancelBtn.addEventListener('click', e => {
 	e.stopPropagation();
 })
 
+document.addEventListener("click", e => {
+	if(e.target.closest(".download-btn")) {
+		downloadBtn.classList.remove('open');
+		e.stopPropagation();
+	}
+})
 
+document.addEventListener('click', e => {
+	if (!e.target.closest('#download-btn')) {
+		downloadBtn.classList.remove('open');
+	};
+})
 
+editor.addEventListener('dragover', e => {
+	e.stopPropagation();
+	e.preventDefault();
+	e.dataTransfer.dropEffect = 'copy';
+});
+
+editor.addEventListener('drop', e => {
+	e.stopPropagation();
+	e.preventDefault();
+	const chosenFile = e.dataTransfer.files[0];
+	readJSON(chosenFile);
+})

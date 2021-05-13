@@ -24,10 +24,10 @@ button {
     justify-content: center;
     align-items: center;
     max-width: 700px;
-    width: 70%;
+    min-width: 250px;
+    width: 80%;
     padding: 20px;
-    margin: 10px;
-    margin: auto;
+    margin: 100px auto;
     box-shadow: 2px 2px 5px #ddd, 4px 4px 15px #ddd;
     border-radius: 10px;
     background: #fff;
@@ -45,7 +45,29 @@ button {
     z-index: -1;
 }
 
+.drag-drop-message {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px;
+    top: -60px;
+    right: -10%;
+    border-radius: 10px;
+    color: #ee2a37;
+}
 
+.drag-drop-message img {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    transform: rotate(240deg);
+    pointer-events: none;
+    top: 60px;
+    right: 0px;
+    z-index: 11;
+}
 
 .toolbar, .editor, .file-name {
     width: 100%;
@@ -58,7 +80,9 @@ button {
 .toolbar {
     background: #ffd1d6;
     margin-bottom: 10px;
-    padding: 10px 15px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .toolbar button {
@@ -69,13 +93,58 @@ button {
 .toolbar span:hover {
     transform: scale(1.3);
     cursor: pointer;
+    color: #ee2a37;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-btn {
+    position: relative;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    background: #ff8890;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100px;
+    left: -110%;
+    top: -50px;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #ff8890 transparent transparent transparent;
+}
+
+.upload-btn:hover .tooltip{
+    visibility: visible;
+}
+
+.fa-file-import {
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+    padding: 0 5px;
+    display: inline-block;
 }
 
 .editor {
-    min-height: 200px;
+    min-height: 250px;
     outline: none;
     box-shadow: inset 0px 0px 5px #ddd;
     padding: 3% 35px;
+    position: relative;
 }
 
 .download-btn {
@@ -112,7 +181,7 @@ button {
 .download-btn.open {
     width: 300px;
     height: 300px;
-    z-index: 2;
+    z-index: 100;
     cursor: initial;
 }
 
@@ -129,7 +198,7 @@ button {
     top: 0;
     left: 0;
     display: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s 0.3s ease;
 }
 
 .download-btn.open .save-popup {

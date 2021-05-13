@@ -10,13 +10,24 @@
 </head>
 <body>
     <div class="container">
-        <input id="upload" type="file" accept=".json">
+            <div class='drag-drop-message'>
+                <p>Upuść plik JSON</p>
+                <img src="arrow.png" alt="arrow">
+            </div>
         <div class="toolbar">
-            <button onclick="format('bold')"><span class="fa fa-bold fa-fw"></span></button>
-		    <button onclick="format('italic')"><span class="fa fa-italic fa-fw"></span></button>
-		    <button onclick="format('insertunorderedlist')"><span class="fa fa-list fa-fw"></span></button>
+            <div>
+                <button onclick="format('bold')"><span class="fa fa-bold fa-fw"></span></button>
+                <button onclick="format('italic')"><span class="fa fa-italic fa-fw"></span></button>
+                <button onclick="format('insertunorderedlist')"><span class="fa fa-list fa-fw"></span></button>
+            </div>
+            <label for="upload" class="upload-btn">
+                <p class="tooltip">Wrzuć plik</p>
+                <span class="fas fa-file-import"></span>
+            </label>
+            <input id="upload" type="file" accept=".json">
         </div>
-        <div class="editor" id="editor" contenteditable="true"></div>
+        <div class="editor" id="editor" contenteditable="true">
+        </div>
         <div 
             class="download-btn"
             id="download-btn">
