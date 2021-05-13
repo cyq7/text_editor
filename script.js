@@ -4,30 +4,24 @@ const downloadBtn = document.getElementById("download-btn");
 const savePopUp = document.getElementById("save-popup");
 const cancelBtn = document.getElementById("cancel-btn");
 
-//___________EDIT_____________
 const format = (command, value) => {
 	document.execCommand(command, false, value);
 }
 
-//_________DOWNLOAD_________
 const download = (filename, text) => {
-	//defining the data of the file using encodeURIComponent
-	const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(text));
+	const encodedStr= "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(text));
 
-	//creating hidden element
-	const element = document.createElement('a');
-	element.style.display = 'none';
+	const downloadLink = document.createElement('a');
+	downloadLink.style.display = 'none';
 
-	element.setAttribute('href', dataStr);
+	downloadLink.setAttribute('href', encodedStr);
 
-	//adding the download attribute of the the hidden link
-	element.setAttribute('download', filename + ".json");
-	document.body.appendChild(element);
+	downloadLink.setAttribute('download', filename + ".json");
+	document.body.appendChild(downloadLink);
 
-	//link click simulation
-	element.click();
+	downloadLink.click();
 
-	document.body.removeChild(element);
+	document.body.removeChild(downloadLink);
 }
 
 savePopUp.addEventListener('submit', e => {
@@ -36,27 +30,27 @@ savePopUp.addEventListener('submit', e => {
     const text = document.getElementById("editor").innerHTML;
     const filename = document.getElementById("file-name").value;
 
-    download(filename, text);
+	const userInput = { inputText: text };
+
+    download(filename, userInput);
 
 	downloadBtn.classList.remove('open');
 	e.stopPropagation();
 }, false);
 
-//____________UPLOAD____________
-
-function readJSON(file) {
+const readJSON = file => {
 	if (file.type && !file.type.startsWith('application/json')) {
     alert('Nieodpowiedni format pliku');
-  }
-  const reader = new FileReader();
-  reader.readAsText(file, "UTF-8");
-  reader.addEventListener('load', e => {
-	const plainText = JSON.parse(e.target.result);
-    editor.innerHTML = plainText;
-  });
+  	} else {
+		const reader = new FileReader();
+  		reader.readAsText(file, "UTF-8");
+  		reader.addEventListener('load', e => {
+			const plainText = JSON.parse(e.target.result);
+    		editor.innerHTML = plainText.inputText;
+  		});
+	}
 }
 
-//EVENT LISTENERS
 upload.addEventListener('change', e => {
 	const chosenFile = e.target.files[0];
 	readJSON(chosenFile);
