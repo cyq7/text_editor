@@ -1,3 +1,3 @@
 # text_editor
 
-Recruitment task
+project created as a recruitment task
